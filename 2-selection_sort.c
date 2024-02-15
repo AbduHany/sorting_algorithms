@@ -25,7 +25,7 @@ void selection_sort(int *array, size_t size)
 				swaploc = j;
 			}
 		}
-		if (swaploc == i)
+		if (min == array[i])
 			continue;
 		temp = array[i];
 		array[i] = array[swaploc];
