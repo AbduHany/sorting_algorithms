@@ -27,7 +27,7 @@ void swap(int a, int b, int *array)
  */
 void shell_sort(int *array, size_t size)
 {
-	int maxgap = 1, i, j;
+	int maxgap = 1, i, j, k;
 
 	if (array == NULL || size < 2)
 		return;
@@ -35,13 +35,19 @@ void shell_sort(int *array, size_t size)
 		maxgap = (maxgap * 3) + 1;
 	for (; maxgap > 0; maxgap = (maxgap - 1) / 3)
 	{
-		for (j = maxgap; j < (int)size; j++)
+		for (i = 0; i + maxgap < (int)size; i++)
 		{
-			for (i = j - maxgap; i >= 0; i -= maxgap)
+			if (array[i] > array[i + maxgap])
 			{
-				if (array[i + maxgap] > array[i])
-					break;
 				swap(i, i + maxgap, array);
+				for (k = i, j = i - maxgap; j >= 0;
+				     j -= maxgap, k--)
+				{
+					if (array[k] < array[j])
+						swap(k, j, array);
+					else
+						break;
+				}
 			}
 		}
 		print_array(array, size);
