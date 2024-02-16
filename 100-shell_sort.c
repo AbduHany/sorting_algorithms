@@ -14,7 +14,7 @@ void shell_sort(int *array, size_t size)
 
 	if (array == NULL || size < 2)
 		return;
-	while (maxgap * 3 + 1 <= (int)size - 1)
+	while (maxgap * 3 + 1 < (int)size - 1)
 	{
 		maxgap = maxgap * 3 + 1;
 	}
