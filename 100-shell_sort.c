@@ -1,6 +1,23 @@
 #include "sort.h"
 
 /**
+ * swap - swaps 2 location in a list.
+ * @array: int pointer to the array.
+ * @a: first location of array to be swapped.
+ * @b: second location of array to be swapped.
+ *
+ * Return: void.
+ */
+void swap(int a, int b, int *array)
+{
+	int temp;
+
+	temp = array[a];
+	array[a] = array[b];
+	array[b] = temp;
+}
+
+/**
  * shell_sort - sorts a list using the shell sort algorithm
  * using a Knuth squence gap.
  * @array: int pointer to the array to be sorted.
@@ -10,33 +27,35 @@
  */
 void shell_sort(int *array, size_t size)
 {
-	int maxgap = 1, i, temp, j, k;
+	int maxgap = 1, i, j, k;
 
 	if (array == NULL || size < 2)
 		return;
 	while ((maxgap * 3 + 1) <= (int)size - 1)
-	{
 		maxgap = (maxgap * 3) + 1;
-	}
 	while (maxgap > 0)
 	{
 		for (i = 0; (i + maxgap) < (int)size; i++)
 		{
 			if (array[i] > array[i + maxgap])
 			{
-				temp = array[i];
-				array[i] = array[i + maxgap];
-				array[i + maxgap] = temp;
+				swap(i, i + maxgap, array);
+				j = i + maxgap;
+				k = i;
+				while (j < (int)size)
+				{
+					if (array[j] < array[k])
+						swap(k, j, array);
+					else
+						break;
+					j += maxgap;
+				}
 				j = i - maxgap;
 				k = i;
-				while (j >= 0 && k >= 0)
+				while (j >= 0)
 				{
 					if (array[j] > array[k])
-					{
-						temp = array[j];
-						array[j] = array[k];
-						array[k] = temp;
-					}
+						swap(k, j, array);
 					else
 						break;
 					k--;
