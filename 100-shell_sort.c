@@ -40,8 +40,7 @@ void shell_sort(int *array, size_t size)
 			if (array[i] > array[i + maxgap])
 			{
 				swap(i, i + maxgap, array);
-				for (k = i, j = i - maxgap; j >= 0;
-				     j -= maxgap, k -= maxgap)
+				for (k = i, j = i - maxgap; j >= 0; j -= maxgap, k -= maxgap)
 				{
 					if (array[k] < array[j])
 						swap(k, j, array);
