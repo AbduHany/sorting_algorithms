@@ -26,13 +26,16 @@ int create_partition(int *array, int begin, int end, int size)
 			temp = array[i];
 			array[i] = array[pivotindex];
 			array[pivotindex] = temp;
+			if (array[i] != array[pivotindex])
+				print_array(array, size);
 		}
 	}
 	pivotindex++;
 	temp = array[end];
 	array[end] = array[pivotindex];
 	array[pivotindex] = temp;
-	print_array(array, size);
+	if (array[end] != array[pivotindex])
+		print_array(array, size);
 	return (pivotindex);
 }
 
@@ -52,9 +55,12 @@ void sort(int *array, int begin, int end, int size)
 
 	if (begin >= end || begin < 0)
 		return;
+
 	splitloc = create_partition(array, begin, end, size);
+
 	/* Sort the left side after splitting */
 	sort(array, 0, splitloc - 1, size);
+
 	/* Sort the right side after splitting */
 	sort(array, splitloc + 1, end, size);
 }
