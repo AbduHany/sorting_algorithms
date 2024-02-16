@@ -33,7 +33,7 @@ void shell_sort(int *array, size_t size)
 		return;
 	while ((maxgap * 3 + 1) <= (int)size - 1)
 		maxgap = (maxgap * 3) + 1;
-	for (;maxgap > 0; maxgap = (maxgap - 1) / 3)
+	for (; maxgap > 0; maxgap = (maxgap - 1) / 3)
 	{
 		for (j = maxgap; j < (int)size; j++)
 		{
@@ -41,8 +41,7 @@ void shell_sort(int *array, size_t size)
 			{
 				if (array[i + maxgap] > array[i])
 					break;
-				else
-					swap(i, i + maxgap, array);
+				swap(i, i + maxgap, array);
 			}
 		}
 		print_array(array, size);
