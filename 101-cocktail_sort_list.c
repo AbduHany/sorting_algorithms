@@ -1,7 +1,8 @@
 #include "sort.h"
 
 /**
- * move_backward - moves backwards and performs swapping in the shaker algorithm.
+ * move_backward - moves backwards and performs swapping
+ * in the shaker algorithm.
  * @swapflag: the flag that should be changed if a swap took place.
  * @comp1: pointer to first node to be compared and swapped if needed.
  * @comp2: pointer to second node to be compared and swapped if needed.
@@ -9,7 +10,8 @@
  *
  * Return: void.
  */
-void move_backward(bool *swapflag, listint_t **comp1, listint_t **comp2, listint_t **list)
+void move_backward(int *swapflag, listint_t **comp1, listint_t **comp2,
+		   listint_t **list)
 {
 	while ((*comp1)->prev != NULL)
 	{
@@ -25,7 +27,7 @@ void move_backward(bool *swapflag, listint_t **comp1, listint_t **comp2, listint
 				(*comp2)->prev->next = (*comp2);
 			(*comp1) = (*comp2)->prev;
 			print_list(*list);
-			*swapflag = true;
+			*swapflag = 1;
 
 		}
 		else
@@ -46,7 +48,8 @@ void move_backward(bool *swapflag, listint_t **comp1, listint_t **comp2, listint
  *
  * Return: void.
  */
-void move_forward(bool *swapflag, listint_t **comp1, listint_t **comp2, listint_t **list)
+void move_forward(int *swapflag, listint_t **comp1, listint_t **comp2,
+		  listint_t **list)
 {
 	while ((*comp2)->next != NULL)
 	{
@@ -64,7 +67,7 @@ void move_forward(bool *swapflag, listint_t **comp1, listint_t **comp2, listint_
 				(*comp2)->prev->next = *comp2;
 			*comp2 = (*comp1)->next;
 			print_list(*list);
-			*swapflag = true;
+			*swapflag = 1;
 		}
 		else
 		{
@@ -74,7 +77,8 @@ void move_forward(bool *swapflag, listint_t **comp1, listint_t **comp2, listint_
 	}
 }
 
-/** cocktail_sort_list - sorts a list using the cocktail shaker sort
+/**
+ * cocktail_sort_list - sorts a list using the cocktail shaker sort
  * algorithm.
  * @list: double pointer to the head of the list to be sorted.
  *
@@ -82,22 +86,22 @@ void move_forward(bool *swapflag, listint_t **comp1, listint_t **comp2, listint_
  */
 void cocktail_sort_list(listint_t **list)
 {
-	bool swapflag = true;
+	int swapflag = 1;
 	listint_t *comp1, *comp2;
 
 	if (list == NULL || *list == NULL || (*list)->next == NULL)
 		return;
 	comp1 = *list;
 	comp2 = comp1->next;
-	while (swapflag == true)
+	while (swapflag == 1)
 	{
-		swapflag = false;
+		swapflag = 0;
 
 		move_forward(&swapflag, &comp1, &comp2, list);
-		if (swapflag == false)
+		if (swapflag == 0)
 			break;
 		move_backward(&swapflag, &comp1, &comp2, list);
-		if (swapflag == false)
+		if (swapflag == 0)
 			break;
 	}
 
