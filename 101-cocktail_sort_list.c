@@ -91,6 +91,21 @@ void cocktail_sort_list(listint_t **list)
 
 	if (list == NULL || *list == NULL || (*list)->next == NULL)
 		return;
+	if ((*list)->next->next == NULL)
+	{
+		comp1 = *list;
+		comp2 = comp1->next;
+		if (comp1->n > comp2->n)
+		{
+			*list = comp2;
+			comp2->next = comp1;
+			comp1->next = NULL;
+			comp1->prev = comp2;
+			comp2->prev = NULL;
+			print_list(*list);
+		}
+		return;
+	}
 	comp1 = *list;
 	comp2 = comp1->next;
 	while (swapflag == 1)
