@@ -29,19 +29,17 @@ void merge(int lo, int hi, int middle, int *array, int *sortedarray)
 			printf(",");
 	}
 	printf("\n");
-	for (sort_place = lo; sort_place < hi; sort_place++)
+	for (sort_place = lo; i < middle && j < hi; sort_place++)
 	{
-		if (i < middle && (j >= hi || array[i] <= array[j]))
-		{
-			sortedarray[sort_place] = array[i];
-			i++;
-		}
+		if (array[i] < array[j])
+			sortedarray[sort_place] = array[i++];
 		else
-		{
-			sortedarray[sort_place] = array[j];
-			j++;
-		}
+			sortedarray[sort_place] = array[j++];
 	}
+	for (; i < middle; i++)
+		sortedarray[sort_place++] = array[i];
+	for (; j < hi; j++)
+		sortedarray[sort_place++] = array[j];
 	printf("[Done]:");
 	for (temp = lo; temp < hi; temp++)
 	{
