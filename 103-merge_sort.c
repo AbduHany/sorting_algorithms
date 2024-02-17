@@ -14,16 +14,14 @@ void merge(int lo, int hi, int middle, int *array, int *sortedarray)
 {
 	int i = lo, j = middle, sort_place, temp;
 
-	printf("Merging...\n");
-	printf("[left]:");
+	printf("Merging...\n[left]:");
 	for (temp = lo; temp < middle; temp++)
 	{
 		printf(" %d", array[temp]);
 		if (temp != (middle - 1))
 			printf(",");
 	}
-	printf("\n");
-	printf("[right]:");
+	printf("\n[right]:");
 	for (temp = middle; temp < hi; temp++)
 	{
 		printf(" %d", array[temp]);
@@ -31,7 +29,7 @@ void merge(int lo, int hi, int middle, int *array, int *sortedarray)
 			printf(",");
 	}
 	printf("\n");
-	for(sort_place = lo; sort_place < hi; sort_place++)
+	for (sort_place = lo; sort_place < hi; sort_place++)
 	{
 		if (i < middle && (j >= hi || array[i] <= array[j]))
 		{
@@ -53,9 +51,7 @@ void merge(int lo, int hi, int middle, int *array, int *sortedarray)
 	}
 	printf("\n");
 	for (i = lo; i < hi; i++)
-	{
 		array[i] = sortedarray[i];
-	}
 }
 
 /**
@@ -78,7 +74,7 @@ void split_merge(int *array, int *sortedarray, int lo, int hi)
 
 	middle = (lo + hi) / 2;
 
-        /* Split left side further */
+	/* Split left side further */
 	split_merge(array, sortedarray, lo, middle);
 	/* Split right side further */
 	split_merge(array, sortedarray, middle, hi);
