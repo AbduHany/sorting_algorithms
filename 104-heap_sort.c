@@ -89,16 +89,18 @@ void sift_down(int *array, int size, int idx)
 			}
 		}
 		else if (leftchild < idx && rightchild >= idx)
-		     {
-			     swap(parent, leftchild, array);
-			     print_array(array, size);
-			     parent = leftchild;
-			     swapflag = 1;
-		     }
+		{
+			if (array[leftchild] > array[parent])
+			{
+				swap(parent, leftchild, array);
+				print_array(array, size);
+				parent = leftchild;
+				swapflag = 1;
+			}
+		}
 	}
 }
 
-int num = 0;
 /**
  * heap_sort - sorts an array by creating a heap out of an array
  * then deleting elements from the heap which leaves a sorted array
