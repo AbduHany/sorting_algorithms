@@ -18,8 +18,8 @@ typedef struct listint_s
 	struct listint_s *prev;
 	struct listint_s *next;
 } listint_t;
-/* Radix sort struct */
 
+/* Radix sort struct */
 /**
  * struct numnode - node containing value of number and the
  * next number in list.
@@ -49,5 +49,6 @@ void counting_sort(int *array, size_t size);
 void merge_sort(int *array, size_t size);
 void heap_sort(int *array, size_t size);
 void radix_sort(int *array, size_t size);
+void bitonic_sort(int *array, size_t size);
 
 #endif
