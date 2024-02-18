@@ -2,25 +2,12 @@
 
 
 /**
- * struct numnode - node containing value of number and the
- * next number in list.
- *
- * @n: Integer stored in the node
- * @next: Pointer to the next element of the list
- */
-typedef struct numnode
-{
-	int n;
-	struct numnode *next;
-} numnode;
-
-/**
  * free_radixtable - frees a radixtable.
  * @radixtable: the radix table to be freed.
  *
  * Return: void.
  */
-void free_radixtable(numnode *radixtable[])
+void free_radixtable(numnode **radixtable)
 {
 	numnode *cursor1, *cursor2;
 	int i;
@@ -81,8 +68,8 @@ void addtobin(numnode *radixtable[], int index, int number)
  */
 void radix_sort(int *array, size_t size)
 {
-	int i, j, k, passnum = 0, maxnum, digit, divisor = 1;
-	numnode *radixtable[10] = {NULL};
+	int i, j, k, l, passnum = 0, maxnum, digit, divisor = 1;
+	numnode *radixtable[10] = {NULL}, *cursor;
 
 	if (array == NULL || size < 2)
 		return;
@@ -95,9 +82,14 @@ void radix_sort(int *array, size_t size)
 		for (j = 0; j < (int)size; j++)
 		{
 			digit = (array[j] / divisor) % 10;
-			printf("%d and %d\n", digit, array[j]);
 			addtobin(radixtable, digit, array[j]);
 		}
+		for (k = 0, l = 0; k < 10; k++)
+		{
+			for (cursor = radixtable[k]; cursor; cursor = cursor->next)
+				array[l++] = cursor->n;
+		}
+		print_array(array, size);
 		free_radixtable(radixtable);
 	}
 }

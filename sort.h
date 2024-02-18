@@ -18,6 +18,22 @@ typedef struct listint_s
 	struct listint_s *prev;
 	struct listint_s *next;
 } listint_t;
+/* Radix sort struct */
+
+/**
+ * struct numnode - node containing value of number and the
+ * next number in list.
+ *
+ * @n: Integer stored in the node
+ * @next: Pointer to the next element of the list
+ */
+typedef struct numnode
+{
+	int n;
+	struct numnode *next;
+} numnode;
+
+
 /* Functions for printing lists & arrays */
 void print_list(const listint_t *list);
 void print_array(const int *array, size_t size);
