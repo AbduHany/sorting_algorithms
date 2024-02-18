@@ -24,10 +24,11 @@ void swap(int a, int b, int *array)
  * @size: size of the subarray being merged.
  * @begin: the beginning index of the subarray being merged.
  * @ascending_flag: the order preference of the merged array.
+ * @full: the full size of the array.
  *
  * Return: void.
  */
-void bitonic_merge(int *array, int size, int begin, int ascending_flag)
+void bitonic_merge(int *array, int size, int begin, int ascending_flag, int full)
 {
 	int half, i;
 
@@ -35,18 +36,16 @@ void bitonic_merge(int *array, int size, int begin, int ascending_flag)
 	{
 		half = size / 2;
 
+
 		for (i = begin; i < begin + half; i++)
 		{
 			if (ascending_flag == (array[i] > array[i + half]))
 			{
 				swap(i, i + half, array);
- 				printf("Merging [%d/%d] (%s):\n", half, size,
-				       ascending_flag ? "UP" : "DOWN");
-				print_array(array, size);
 			}
 		}
-		bitonic_merge(array, half, begin, ascending_flag);
-		bitonic_merge(array, half, begin + half, ascending_flag);
+		bitonic_merge(array, half, begin, ascending_flag, full);
+		bitonic_merge(array, half, begin + half, ascending_flag, full);
 	}
 }
 
@@ -56,19 +55,21 @@ void bitonic_merge(int *array, int size, int begin, int ascending_flag)
  * @size: size of the current array.
  * @begin: begining of the current array.
  * @ascending_flag: determines if list is ascending or decending order.
+ * @full: the full size of the calling function.
  *
  * Return: void.
  */
-void bitonic_split(int *array, int size, int begin, int ascending_flag)
+void bitonic_split(int *array, int size, int begin, int ascending_flag, int full)
 {
 	int half;
 
 	if (size > 1)
 	{
+
 		half = size / 2;
- 		bitonic_split(array, half, begin + half, 0);
-		bitonic_split(array, half, begin, 1);
-		bitonic_merge(array, size, begin, ascending_flag);
+		bitonic_split(array, half, begin, 1, full);
+ 		bitonic_split(array, half, begin + half, 0, full);
+		bitonic_merge(array, size, begin, ascending_flag, full);
 	}
 }
 
@@ -82,5 +83,5 @@ void bitonic_split(int *array, int size, int begin, int ascending_flag)
  */
 void bitonic_sort(int *array, size_t size)
 {
-	bitonic_split(array, size, 0, 1);
+	bitonic_split(array, size, 0, 1, size);
 }
