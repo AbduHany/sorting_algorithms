@@ -31,11 +31,10 @@ int create_partition(int *array, int begin, int end, int size)
 {
 	int pivot, i, j, pivotindex;
 
-	(void)size;
 	pivot = array[end];
 	i = begin - 1;
 	j = end + 1;
-	while (1)
+	while (i <= j)
 	{
 		i++;
 		while (array[i] < pivot)
@@ -44,17 +43,14 @@ int create_partition(int *array, int begin, int end, int size)
 		while (array[j] > pivot)
 			j--;
 
-		if (i > j)
-		{
-			pivotindex = j;
-			return (pivotindex);
-		}
-		if (array[i] != array[j])
+		if (i < j)
 		{
 			swap(i, j, array);
 			print_array(array, size);
 		}
 	}
+	pivotindex = j;
+	return (pivotindex);
 }
 
 /**
