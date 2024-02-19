@@ -33,29 +33,26 @@ int create_partition(int *array, int begin, int end, int size)
 
 	(void)size;
 	pivot = array[end];
-	i = begin;
-	j = end - 1;
-	while (i <= j)
+	i = begin - 1;
+	j = end + 1;
+	while (1)
 	{
-		while (array[i] < pivot)
+		do {
 			i++;
-	        while (array[j] >= pivot && j >= begin)
+		} while (array[i] < pivot);
+		do {
 			j--;
-		if (i < j)
-		{
-			swap (i, j, array);
-			i++;
-			j--;
+		} while (array[j] > pivot);
 
-			if (array[i] != array[j])
-				print_array(array, size);
+		if (i > j)
+		{
+			pivotindex = j;
+			return (pivotindex);
 		}
-	}
-	pivotindex = i;
-	swap(pivotindex, end, array);
-	if (array[i] != array[end])
-		print_array(array, size);
-	return (pivotindex);
+		swap (i, j, array);
+		if (array[i] != array[end])
+			print_array(array, size);
+	};
 }
 
 /**
@@ -78,7 +75,7 @@ void sort(int *array, int begin, int end, int size)
 	splitloc = create_partition(array, begin, end, size);
 
 	/* Sort the left side after splitting */
-	sort(array, begin, splitloc - 1, size);
+	sort(array, begin, splitloc, size);
 
 	/* Sort the right side after splitting */
 	sort(array, splitloc + 1, end, size);
