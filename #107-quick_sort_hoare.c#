@@ -31,7 +31,6 @@ int create_partition(int *array, int begin, int end, int size)
 {
 	int pivot, i, j, pivotindex;
 
-	(void)size;
 	pivot = array[end];
 	i = begin - 1;
 	j = end + 1;
@@ -54,7 +53,7 @@ int create_partition(int *array, int begin, int end, int size)
 			swap(i, j, array);
 			print_array(array, size);
 		}
-	}
+	};
 }
 
 /**
