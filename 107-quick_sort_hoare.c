@@ -37,12 +37,12 @@ int create_partition(int *array, int begin, int end, int size)
 	j = end + 1;
 	while (1)
 	{
-		do {
+		i++;
+		while (array[i] < pivot)
 			i++;
-		} while (array[i] < pivot);
-		do {
+		j--;
+		while (array[j] > pivot)
 			j--;
-		} while (array[j] > pivot);
 
 		if (i > j)
 		{
@@ -69,7 +69,7 @@ void sort(int *array, int begin, int end, int size)
 {
 	int splitloc;
 
-	if (begin >= end || begin < 0 || end < 0)
+	if (begin >= end)
 		return;
 
 	splitloc = create_partition(array, begin, end, size);
