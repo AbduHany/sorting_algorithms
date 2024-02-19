@@ -49,7 +49,7 @@ int create_partition(int *array, int begin, int end, int size)
 			pivotindex = j;
 			return (pivotindex);
 		}
-		swap (i, j, array);
+		swap(i, j, array);
 		if (array[i] != array[end])
 			print_array(array, size);
 	};
