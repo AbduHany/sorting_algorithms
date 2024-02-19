@@ -67,9 +67,17 @@ void bitonic_split(int *array, int size, int begin, int ascending_flag, int full
 	{
 
 		half = size / 2;
+		printf("Merging [%d/%d] (%s):\n", size, full,
+		       ascending_flag ? "UP" : "DOWN");
+		print_array(array + begin, size);
+
 		bitonic_split(array, half, begin, 1, full);
  		bitonic_split(array, half, begin + half, 0, full);
 		bitonic_merge(array, size, begin, ascending_flag, full);
+
+		printf("Result [%d/%d] (%s):\n", size, full,
+		       ascending_flag ? "UP" : "DOWN");
+		print_array(array + begin, size);
 	}
 }
 
