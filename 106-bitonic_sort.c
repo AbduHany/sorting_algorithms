@@ -28,7 +28,8 @@ void swap(int a, int b, int *array)
  *
  * Return: void.
  */
-void bitonic_merge(int *array, int size, int begin, int ascending_flag, int full)
+void bitonic_merge(int *array, int size, int begin,
+		   int ascending_flag, int full)
 {
 	int half, i;
 
@@ -59,7 +60,8 @@ void bitonic_merge(int *array, int size, int begin, int ascending_flag, int full
  *
  * Return: void.
  */
-void bitonic_split(int *array, int size, int begin, int ascending_flag, int full)
+void bitonic_split(int *array, int size, int begin,
+		   int ascending_flag, int full)
 {
 	int half;
 
@@ -72,7 +74,7 @@ void bitonic_split(int *array, int size, int begin, int ascending_flag, int full
 		print_array(array + begin, size);
 
 		bitonic_split(array, half, begin, 1, full);
- 		bitonic_split(array, half, begin + half, 0, full);
+		bitonic_split(array, half, begin + half, 0, full);
 		bitonic_merge(array, size, begin, ascending_flag, full);
 
 		printf("Result [%d/%d] (%s):\n", size, full,
