@@ -5,12 +5,19 @@
 #include <stdlib.h>
 #include <string.h>
 
+/**
+ * enum kind_e - Playing Card kinds.
+ * @SPADE: value 0.
+ * @HEART: value 1.
+ * @CLUB: value 2.
+ * @DIAMOND: value 3.
+ */
 typedef enum kind_e
 {
-    SPADE = 0,
-    HEART,
-    CLUB,
-    DIAMOND
+	SPADE = 0,
+	HEART,
+	CLUB,
+	DIAMOND
 } kind_t;
 
 /**
@@ -22,10 +29,18 @@ typedef enum kind_e
  */
 typedef struct card_s
 {
-    const char *value;
-    const kind_t kind;
+	const char *value;
+	const kind_t kind;
 } card_t;
 
+/**
+ * struct value_num - Value of card.
+ *
+ * @valuename: name of the card value.
+ * From "Ace" to "King".
+ * @valuenum: the corresponding int
+ * value of the valuename.
+ */
 typedef struct value_num
 {
 	char *valuename;
@@ -41,9 +56,9 @@ typedef struct value_num
  */
 typedef struct deck_node_s
 {
-    const card_t *card;
-    struct deck_node_s *prev;
-    struct deck_node_s *next;
+	const card_t *card;
+	struct deck_node_s *prev;
+	struct deck_node_s *next;
 } deck_node_t;
 
 void print_deck(const deck_node_t *deck);
